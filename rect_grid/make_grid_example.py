@@ -2,6 +2,8 @@
 import netCDF4
 import numpy as np
 
+import matplotlib.pyplot as plt
+
 # make a little grid:
 
 node_lon = np.linspace(-26, -22, 13)
@@ -78,6 +80,21 @@ with netCDF4.Dataset("rect_grid.nc", mode='w') as ncds:
     node_data_var.cell_methods="point"
     node_data_var.coordinates = "node_lon node_lat"
 
+# Plot the grid
+
+LAT, LON = np.meshgrid(node_lon, node_lat)
+
+# plt.ion
+
+fig, ax = plt.subplots()
+ax.plot(LON.flat, LAT.flat, 'ok')
+for lon in node_lon:
+    ax.plot((node_lat[0], node_lat[-1]), (lon, lon), 'k')
+for lat in node_lat:
+    ax.plot((lat, lat), (node_lon[0], node_lon[-1]),  'k')
+
+
+fig.savefig('basic_grid.png')
 
 
 
