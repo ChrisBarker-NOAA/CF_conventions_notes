@@ -20,4 +20,3 @@ Experiments about NFC normalization and the C and Python libs.
 
 `nfc_norm.py`
 
-
