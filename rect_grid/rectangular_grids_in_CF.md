@@ -5,7 +5,7 @@ a Rectangular grid is defined, for this document, as a grid (or mesh) in which:
 - Each cell is rectangular (in a given coordinate system)
 - The cells align exactly with the X and Y (or latitude and longitude) directions.
 
-NOTE: This is slightly more complex than a "regular" grid, in which all the cells are the same size -- in this case the width or height of teh cells may change, but all the cells in a "row" will have the same height, and all the cells in a "column" have the same width.
+NOTE: This is slightly more complex than a "regular" grid, in which all the cells are the same size -- in this case the width or height of the cells may change, but all the cells in a "row" will have the same height, and all the cells in a "column" have the same width.
 
 A couple more (recursive) definitions:
 - node: the corner points of the cells
@@ -55,17 +55,17 @@ The nodes can be defined in terms of the latitude and longitude (x,y) arrays. If
 
 ```
 dimensions:
-    lat_node = 101 ;
-    lon_node = 201 ;
+    node_lat = 10 ;
+    node_lon = 13 ;
 
 variables:
 
-float lat(lat_node) ;
+float node_lat(node_lat) ;
     lat:long_name = "latitude of the nodes" ;
     lat:units = "degrees_north" ;
     lat:standard_name = "latitude" ;
 
-float lon(lon_node) ;
+float node_lon(node_lon) ;
     lon:long_name = "longitude of the nodes" ;
     lon:units = "degrees_east" ;
     lon:standard_name = "longitude" ;
@@ -83,17 +83,17 @@ Give them the nodes as coordinates:
 
 ```
 dimensions:
-    lat_node = 101 ;
-    lon_node = 201 ;
+    node_lat = 10 ;
+    node_lon = 13 ;
 
 variables:
 
-float lat(lat_node) ;
+float node_lat(node_lat) ;
     lat:long_name = "latitude of the nodes" ;
     lat:units = "degrees_north" ;
     lat:standard_name = "latitude" ;
 
-float lon(lon_node) ;
+float node_lon(node_lon) ;
     lon:long_name = "longitude of the nodes" ;
     lon:units = "degrees_east" ;
     lon:standard_name = "longitude" ;
@@ -111,16 +111,19 @@ There are one fewer cells than nodes in each direction, so you need new dimensio
 
 ```
 dimensions:
-    node_lon = 13 ;
     node_lat = 10 ;
-    cell_lon = 12 ;
+    node_lon = 13 ;
     cell_lat = 9 ;
+    cell_lon = 12 ;
 
 double data(cell_lon, cell_lat) ;
     data:name = "temperature";
     data:units = "C";
 ```
-All good but that's not enough to know where these data apply to, or what it means:
+
+All good -- but that's not enough to know where these data apply to, or what it means. CF requires "coordinates" to specify that ..
+
+[more to come ....]
 
 
 
